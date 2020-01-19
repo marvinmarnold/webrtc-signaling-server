@@ -2,7 +2,14 @@ const WebSocket = require('ws');
 
 const port = 7766
 
+
+
+const http2 = require('http2');
+ 
+// const server = http2.createServer();
+ 
 console.log("Starting websocket on port " + port)
+// const wss = new WebSocket.Server({ server });
 const wss = new WebSocket.Server({ port: port });
 
 let numClients = 0
@@ -57,3 +64,5 @@ wss.on('connection', function connection(ws, req) {
   })
 
 });
+
+// server.listen(port);
