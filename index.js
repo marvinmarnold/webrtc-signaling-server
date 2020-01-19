@@ -1,16 +1,14 @@
 const WebSocket = require('ws');
+const http = require('http');
 
 const port = 7766
-
-
-
-const http2 = require('http2');
  
-// const server = http2.createServer();
- 
+const server = http.createServer();
+server.listen(port);
+
 console.log("Starting websocket on port " + port)
-// const wss = new WebSocket.Server({ server });
-const wss = new WebSocket.Server({ port: port });
+const wss = new WebSocket.Server({ server });
+// const wss = new WebSocket.Server({ port: port });
 
 let numClients = 0
 
@@ -22,10 +20,6 @@ const isReadyClientNotSelf = (client, ws) => {
 const sendNumClients = ws => {
   console.log("Notifying self about number of peers")
   ws.send("N:" + numClients)
-  // wss.clients.forEach(client => {
-  //   if (isReadyClientNotSelf(client, ws))
-  //     client.send("N:" + numClients)
-  // })
 }
 
 const echoMsg = (msg, ws) => {
@@ -49,8 +43,6 @@ wss.on('connection', function connection(ws, req) {
   numClients += 1
 
   console.log("New client connected. Num connected clients: " + numClients)
-  // This will trigger the client to create an offer
-  // Only support two peers right now. For simplicity, this will cause the newest client to create the initial offer.
   sendNumClients(ws)
   
   ws.on('message', function incoming(message) {
@@ -64,5 +56,3 @@ wss.on('connection', function connection(ws, req) {
   })
 
 });
-
-// server.listen(port);
