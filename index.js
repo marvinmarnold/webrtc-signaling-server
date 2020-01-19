@@ -1,7 +1,7 @@
 const WebSocket = require('ws');
 const http = require('http');
 
-const port = 7766
+const port = 8080
  
 const server = http.createServer(function(request, response) {
    request.on('error', (err) => {
