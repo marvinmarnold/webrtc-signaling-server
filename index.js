@@ -3,7 +3,11 @@ const http = require('http');
 
 const port = 7766
  
-const server = http.createServer();
+const server = http.createServer(function(request, response) {
+   request.on('error', (err) => {
+      console.error(err.stack);
+   });
+});
 server.listen(port);
 
 console.log("Starting websocket on port " + port)
