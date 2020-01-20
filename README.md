@@ -8,4 +8,6 @@ node index.js
 
 - [x] Allow single incoming connection
 - [x] Maintain state about all connected clients
-- [ ] Implement echoing from client A to client B
+- [x] Implement echoing from client A to client B
+
+To open up port publicly: `iptables -I INPUT -p tcp --dport 7766 -j ACCEPT`
