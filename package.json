@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/marvinmarnold/webrtc-signaling-server#readme",
   "dependencies": {
-    "ws": "^7.2.1"
+    "ws": "^7.4.6"
   }
 }
